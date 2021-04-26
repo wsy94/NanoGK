@@ -179,7 +179,7 @@ while(T>Tmin)
 		aa=a;
 		bb=b;
 		cc=c;
-		printf("%d\t%.2f\t%f\t%f\t%f\t%f\n",j,T,aa,bb,cc,Eng0/(l-m));
+		printf("%d\t%.2f\t%f\t%f\t%f\t%f\n",j,T,aa,bb,cc,Eng0);
 		}
 	else{if((exp(-(Eng-Eng0)/(R*T))>rand()/double(RAND_MAX))){
 			Eng0=Eng;
@@ -190,8 +190,8 @@ while(T>Tmin)
 			}
 		}
 	}
-	printf("%d\t%.2f\t%f\t%f\t%f\t%f\n",j,T,aa,bb,cc,Eng0/(l-m));
-	fprintf(fp,"%f\t%f\t%f\t%.4f\n",aa,bb,cc,Eng0/(l-m));
+	printf("%d\t%.2f\t%f\t%f\t%f\t%f\n",j,T,aa,bb,cc,Eng0);
+	fprintf(fp,"%f\t%f\t%f\t%.4f\n",aa,bb,cc,Eng0/(l));
 	if(Eng0<Eng00){
 		Eng00=Eng;
 		aaa=aa;
@@ -200,7 +200,7 @@ while(T>Tmin)
 		}
 	else;
 }
-printf("Best try:\t%f\t%f\t%f\t%f\n",aaa,bbb,ccc,Eng00/(l-m));
+printf("Best try:\t%f\t%f\t%f\t%f\n",aaa,bbb,ccc,Eng00);
 pLSR(aaa,bbb,ccc,expm);
 
 fclose(fp);
