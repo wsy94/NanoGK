@@ -69,7 +69,7 @@ double LSR(double a, double b, double c, double expm[l][2]){
 		{
 		//printf("%lf\t%lf\n",thr[i][0],thr[i][1]);
 		double slope=thr[i][1]-thr[i-1][1];
-		SSE=SSE+pow((thr[i][1]-expm[i][1]),2)*(1/(slope*slope+1));
+		SSE=SSE+pow((thr[i][1]-expm[i][1]),2);
 		}
 
 return (SSE);
@@ -164,7 +164,7 @@ fprintf(fp,"a\t b\t R2\n");
 printf("T\tK\tD\tSSR\n");
 //////SimulateD Annealing///////
 
-for(int j=0;j<200;j++){
+for(int j=0;j<100;j++){
 T=Tmax; a=1; aa=0; b=1; bb=0; c=1; cc=1; ccc=0; Eng0=Engf;
 while(T>Tmin)
 	{
@@ -179,7 +179,7 @@ while(T>Tmin)
 		aa=a;
 		bb=b;
 		cc=c;
-		printf("%d\t%.2f\t%f\t%f\t%f\t%f\n",j,T,aa,bb,cc,Eng0);
+		printf("%d\t%.2f\t%f\t%f\t%f\t%f\n",j,T,aa,bb,cc,Eng0/(l-m));
 		}
 	else{if((exp(-(Eng-Eng0)/(R*T))>rand()/double(RAND_MAX))){
 			Eng0=Eng;
@@ -190,8 +190,8 @@ while(T>Tmin)
 			}
 		}
 	}
-	printf("%d\t%.2f\t%f\t%f\t%f\t%f\n",j,T,aa,bb,cc,Eng0);
-	fprintf(fp,"%f\t%f\t%f\t%.4f\n",aa,bb,cc,Eng0);
+	printf("%d\t%.2f\t%f\t%f\t%f\t%f\n",j,T,aa,bb,cc,Eng0/(l-m));
+	fprintf(fp,"%f\t%f\t%f\t%.4f\n",aa,bb,cc,Eng0/(l-m));
 	if(Eng0<Eng00){
 		Eng00=Eng;
 		aaa=aa;
@@ -200,7 +200,7 @@ while(T>Tmin)
 		}
 	else;
 }
-printf("Best try:\t%f\t%f\t%f\t%f\n",aaa,bbb,ccc,Eng00);
+printf("Best try:\t%f\t%f\t%f\t%f\n",aaa,bbb,ccc,Eng00/(l-m));
 pLSR(aaa,bbb,ccc,expm);
 
 fclose(fp);
